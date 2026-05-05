@@ -27,11 +27,14 @@ Console.WriteLine($"Connected to MCP server. Found {mcpTools.Count} tools:");
 foreach (var t in mcpTools)
     Console.WriteLine($"  - {t.Name}: {t.Description}");
 
+var otlpEndpoint = Environment.GetEnvironmentVariable("OTEL_EXPORTER_OTLP_ENDPOINT")
+    ?? "http://localhost:4317";
+
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("MafFirstAgent"))
     .AddSource("*Microsoft.Extensions.AI")
     .AddSource("*Microsoft.Agents.AI")
-    .AddOtlpExporter(opt => opt.Endpoint = new Uri("http://192.168.1.48:4317"))
+    .AddOtlpExporter(opt => opt.Endpoint = new Uri(otlpEndpoint))
     .Build();
 
 IChatClient chatClient = new OpenAIClient(apiKey)
