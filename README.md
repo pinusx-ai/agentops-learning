@@ -1,5 +1,7 @@
 # AgentOps Learning
 
+> **Note:** This code now lives polished and maintained in [`agentops-dotnet/samples/01-maf-mcp-quickstart/`](https://github.com/pinusx-ai/agentops-dotnet/tree/main/samples/01-maf-mcp-quickstart/). This repository remains as the original time-stamped spike.
+
 Hands-on spike code from learning Microsoft Agent Framework + MCP + OpenTelemetry.
 
 ## What's here
